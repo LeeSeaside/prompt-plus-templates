@@ -6,7 +6,6 @@
 
 ```
 templates/
-├── README.md
 ├── backend-api.md         # 后端接口开发
 ├── frontend-api.md        # 前端API对接
 └── backend-from-ui.md     # 根据前端页面生成后端接口需求
@@ -43,8 +42,8 @@ prompt-plus repo add my-templates https://github.com/xxx/my-templates.git
 prompt-plus repo sync my-templates
 
 # 使用模板
-prompt-plus list -r my-templates
-prompt-plus use my-template -r my-templates
+prompt-plus list
+prompt-plus use
 ```
 
 ## 贡献模板
@@ -61,3 +60,4 @@ prompt-plus use my-template -r my-templates
    - 分析步骤
    - 输出格式要求
    - 保存位置建议
+
