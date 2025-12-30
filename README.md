@@ -1,63 +1,91 @@
-# prompt-plus 官方模板仓库
+## 技能包仓库格式
 
-这是 prompt-plus 的官方模板仓库，包含常用的提示词模板。
-
-## 目录结构
+如果你想创建自己的技能包仓库，请按以下格式组织：
 
 ```
-templates/
-├── backend-api.md         # 后端接口开发
-├── frontend-api.md        # 前端API对接
-└── backend-from-ui.md     # 根据前端页面生成后端接口需求
+your-repo/
+└── skills/
+    ├── backend_api/
+    │   ├── manifest.md      # 执行流程和规范（必需）
+    │   ├── context.md       # 项目配置模板（必需）
+    │   ├── input/           # 输入文档目录
+    │   │   └── .gitkeep
+    │   ├── output/          # 输出文档目录
+    │   │   └── .gitkeep
+    │   └── tools/           # 提示词工具
+    │       ├── init.md      # 初始化提示词
+    │       └── dev.md       # 开发提示词
+    ├── frontend_api/
+    │   ├── manifest.md
+    │   ├── context.md
+    │   └── ...
+    └── another_skill/
+        └── ...
 ```
 
-## 模板格式
-
-每个模板是一个 Markdown 文件，使用 Front Matter 定义元信息：
+### manifest.md 格式
 
 ```markdown
----
-name: 模板名称
-description: 模板描述
-category: 分类（backend/frontend/fullstack）
-outputFileName: 输出文件名.md
----
+# Skill Manifest: 技能名称
 
-# 模板标题
+## 技能描述
+简要说明这个技能包的用途。
 
-模板内容...
+## 执行协议
+定义 AI 执行任务的步骤流程。
+
+### 1. Context Check (上下文检查)
+...
+
+### 2. Input Acquisition (获取需求)
+...
+
+### 3. Code Generation (代码生成)
+...
+
+### 4. Documentation Output (文档输出)
+...
+
+## 约束条件
+- 约束 1
+- 约束 2
 ```
 
-## 自建模板仓库
+### context.md 格式
 
-1. Fork 本仓库或创建新仓库
-2. 在 `templates/` 目录下添加 `.md` 模板文件
-3. 使用 `prompt-plus repo add` 添加你的仓库
+```markdown
+# Project Context Configuration
 
-```bash
-# 添加自定义仓库
-prompt-plus repo add my-templates https://github.com/xxx/my-templates.git
+> ⚠️ 此文件需要初始化
 
-# 同步模板
-prompt-plus repo sync my-templates
+## Tech Stack
+- **Framework**: <!-- 待填充 -->
+- **ORM**: <!-- 待填充 -->
 
-# 使用模板
-prompt-plus list
-prompt-plus use
+## Directory Mapping
+- **Controller Path**: <!-- 待填充 -->
+- **Service Path**: <!-- 待填充 -->
+
+## Code Style
+- **Naming Convention**: <!-- 待填充 -->
 ```
 
-## 贡献模板
+### tools/init.md 格式
 
-欢迎提交 PR 贡献新模板！
+```markdown
+# 技能名 - 初始化提示词
 
-### 模板编写规范
+## 使用方法
+复制以下内容发送给 AI
 
-1. `name` - 简短的英文名，使用小写和连字符
-2. `description` - 简洁的中文描述
-3. `category` - 分类：backend / frontend / fullstack / devops / other
-4. 内容应包含：
-   - 任务说明
-   - 分析步骤
-   - 输出格式要求
-   - 保存位置建议
+---
 
+\`\`\`
+请执行 xxx 技能初始化：
+1. 扫描项目结构
+2. 识别技术栈
+3. 将结果写入 context.md
+\`\`\`
+```
+
+---
