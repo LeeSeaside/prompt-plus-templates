@@ -14,7 +14,10 @@
 
 ### 2. Input Acquisition (获取需求)
 - 从 `skills/frontend_api/input/` 读取接口文档
-- 支持格式：Swagger JSON、OpenAPI YAML、Markdown 接口列表
+- 支持格式：
+    - Swagger JSON / OpenAPI YAML
+    - Markdown 接口列表
+    - **backend_api 输出的 `api-spec-*.md`**（推荐，可直接从 `skills/backend_api/output/` 复制）
 
 ### 3. Code Generation (代码生成)
 
@@ -38,7 +41,7 @@ import type { XxxParams, XxxResult } from './types'
 
 /** 获取列表 */
 export function getXxxList(params: XxxParams) {
-  return request.get<XxxResult>('/api/xxx', { params })
+    return request.get<XxxResult>('/api/xxx', { params })
 }
 ```
 
