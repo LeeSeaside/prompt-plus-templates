@@ -6,11 +6,14 @@
 - **Framework**: <!-- Vue 3 / React / Angular -->
 - **HTTP Client**: <!-- axios / fetch / ky -->
 - **TypeScript**: <!-- 是否使用 TS -->
+- **UI Library**: <!-- Element Plus / Ant Design / Vuetify -->
 
 ## Directory Mapping
 - **API Path**: <!-- src/api -->
 - **Types Path**: <!-- src/api/types / src/types -->
 - **Request Utils**: <!-- src/utils/request.ts -->
+- **Pages Path**: <!-- src/views / src/pages -->
+- **Components Path**: <!-- src/components -->
 
 ## Naming Convention
 
@@ -56,5 +59,53 @@ interface Result<T> {
 interface PageResult<T> {
   list: T[]
   total: number
+}
+```
+
+## Page Patterns
+
+### 列表页面模式
+```typescript
+// 列表数据加载模式
+const loading = ref(false)
+const tableData = ref([])
+const total = ref(0)
+
+const loadData = async () => {
+  loading.value = true
+  try {
+    const res = await getXxxList(queryParams)
+    tableData.value = res.data.list
+    total.value = res.data.total
+  } finally {
+    loading.value = false
+  }
+}
+```
+
+### 表单提交模式
+```typescript
+// 表单提交模式
+const handleSubmit = async () => {
+  await formRef.value.validate()
+  if (isEdit) {
+    await updateXxx(formData)
+  } else {
+    await createXxx(formData)
+  }
+  message.success('操作成功')
+  dialogVisible.value = false
+  loadData()
+}
+```
+
+### 删除操作模式
+```typescript
+// 删除操作模式
+const handleDelete = async (id: number) => {
+    await MessageBox.confirm('确认删除？')
+    await deleteXxx(id)
+    message.success('删除成功')
+    loadData()
 }
 ```
